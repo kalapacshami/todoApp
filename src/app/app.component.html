@@ -9,7 +9,51 @@
       class="badge mr-2">{{counter()}}</span>
       TODOS
     </h3>
+    <hr class="my-5">
+    <!--Add Items-->
 
+    <input 
+    [(ngModel)] = "newToDo.text" 
+    type="text"
+    placeholder="Text of the To Do item"
+    class="form-control mb-3">
+
+    <div class="form-group">
+      <select [(ngModel)]="newToDo.type" class="form-control">
+        <option disabled>Please select one</option>
+        <option *ngFor="let type of todoTypes" [value]="type.value">
+          {{type.text}}
+        </option>
+      </select>
+
+    </div>
+
+
+    <div class="form-group">
+      <select [(ngModel)]="newToDo.tags" multiple class="form-control">
+        <option disabled>Please select at least one</option>
+        <option *ngFor="let tag of tagOptions" [value]="tag">
+          {{tag}}
+        </option>
+      </select>
+
+    </div>
+
+    <button class="btn btn-success btn-block"
+    (click)="addNewToDo()">
+      Add To Do Item
+    </button>
+    <hr class="my-5">
+
+
+
+
+    <input [(ngModel)]="newTag" type="text" placeholder="Content of tag" class="form-control mb-3">
+    <button class="btn btn-primary btn-block" (click)="addNewTag()">Add new tag</button>
+
+    <hr class="my-5">
+
+    <!--Display Items-->
     <div
     *ngFor="let item of todos" 
     [class] = "stlyeBinding(item)"
